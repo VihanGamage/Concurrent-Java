@@ -5,7 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class BankAccount {
     private final int id;
     private double balance;
-    private final ReentrantLock lock = new ReentrantLock();
+    private final ReentrantLock lock = new ReentrantLock(true);
 
     public BankAccount(int id,double balance){
         this.id= id;

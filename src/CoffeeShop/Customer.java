@@ -10,6 +10,12 @@ public class Customer extends Thread {
 
     @Override
     public void run(){
-        coffeeShop.placeOrder("coffee");
+        try {
+            coffeeShop.placeOrder("coffee");
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

@@ -10,6 +10,11 @@ public class Barista extends Thread{
 
     @Override
     public void run(){
-        coffeeShop.prepareOrder();
+        try {
+            coffeeShop.prepareOrder();
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

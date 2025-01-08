@@ -11,7 +11,8 @@ public class Barista extends Thread{
     @Override
     public void run(){
         try {
-            coffeeShop.prepareOrder();
+            System.out.println("Barista "+Thread.currentThread().getName()+
+                    " prepared order: "+coffeeShop.prepareOrder());
             Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

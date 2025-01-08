@@ -11,7 +11,7 @@ public class Customer extends Thread {
     @Override
     public void run(){
         try {
-            coffeeShop.placeOrder("coffee");
+            coffeeShop.placeOrder("Coffee with Milk");
             Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

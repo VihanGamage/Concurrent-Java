@@ -23,7 +23,8 @@ public class CoffeeShop {
             }
         }
         orderQueue.add(order);
-        System.out.println("order added: "+ order);
+        System.out.println("Customer "+Thread.currentThread().getName()+
+                " ordered: "+ order);
         notifyAll();
     }
 
@@ -37,7 +38,6 @@ public class CoffeeShop {
             }
         }
         String order = orderQueue.poll();
-        System.out.println("order prepared: "+ order);
         notifyAll();
         return order;
     }

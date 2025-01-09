@@ -9,7 +9,7 @@ public class Barista extends Thread{
     }
 
     @Override
-    public void run(){
+    public void run(){   //consumer thread is running
         try {
             System.out.println("Barista "+Thread.currentThread().getName()+
                     " prepared order: "+coffeeShop.prepareOrder());

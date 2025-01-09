@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public class CoffeeShop {
 
-    Queue<String> orderQueue;
+    Queue<String> orderQueue;   //buffer
     int capacity;
 
     public CoffeeShop(int capacity){
@@ -14,7 +14,7 @@ public class CoffeeShop {
     }
 
     public synchronized void placeOrder(String order) {
-        while (orderQueue.size()==capacity){
+        while (orderQueue.size()==capacity){ //checking if the queue is full
             try {
                 System.out.println("waiting, queue is full");
                 wait();
@@ -22,14 +22,14 @@ public class CoffeeShop {
                 Thread.currentThread().interrupt();
             }
         }
-        orderQueue.add(order);
+        orderQueue.add(order);   //adding order to buffer
         System.out.println("Customer "+Thread.currentThread().getName()+
                 " ordered: "+ order);
         notifyAll();
     }
 
     public synchronized String prepareOrder()  {
-        while (orderQueue.isEmpty()){
+        while (orderQueue.isEmpty()){  //checking if the queue is empty
             try {
                 System.out.println("waiting, queue is empty");
                 wait();
@@ -37,7 +37,7 @@ public class CoffeeShop {
                 Thread.currentThread().interrupt();
             }
         }
-        String order = orderQueue.poll();
+        String order = orderQueue.poll();  //removing order from buffer
         notifyAll();
         return order;
     }

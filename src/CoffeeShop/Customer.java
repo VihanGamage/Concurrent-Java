@@ -9,7 +9,7 @@ public class Customer extends Thread {
     }
 
     @Override
-    public void run(){
+    public void run(){  //producer thread is running
         try {
             coffeeShop.placeOrder("Coffee with Milk");
             Thread.sleep(500);

@@ -20,22 +20,19 @@ public class Main {
                 transactionSystem.transfer(3,1,2500));
         Thread thread4 = new Thread(() ->
                 transactionSystem.reverseTransaction(1,2,500));
+        //finally printing balances of accounts
+        Thread thread5 = new Thread(transactionSystem::printAccountBalances);
 
         thread1.start();
+        thread1.join();  //Ensure Thread 1 finishes before starting Thread 2
         thread2.start();
+        thread2.join();  //Ensure Thread 2 finishes before starting Thread 3
         thread3.start();
+        thread3.join();  //Ensure Thread 3 finishes before starting Thread 4
         thread4.start();
-
-        try {
-            thread1.join();
-            thread2.join();
-            thread3.join();
-            thread4.join();
-        }catch (InterruptedException e){
-            Thread.currentThread().interrupt();
-        }
-
-        transactionSystem.printAccountBalances();  //finally printing balances of accounts
+        thread4.join();  //Ensure Thread 4 finishes before starting Thread 5
+        thread5.start();
+        thread5.join();  //finally thread5 runs
 
     }
 }
